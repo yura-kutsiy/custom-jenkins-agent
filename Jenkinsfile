@@ -11,9 +11,8 @@ pipeline {
                 container('kaniko') {
                     script {
                         sh '''
-                            /kaniko/executor --dockerfile `pwd`/Dockerfile \
-                                             --context `pwd` \
-                                             --no-push
+                            /kaniko/executor --context `pwd` \
+                                             --destination yurasdockers/jenkins-agent:0.1
                         '''
                     }
                 }
