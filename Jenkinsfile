@@ -6,10 +6,10 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        withCredentials([usernamePassword(credentialsId: 'dockerCred', Username: 'pass', Password: 'user')]) {
     // the code here can access $pass and $user
             stage('Build') { 
                 steps { 
+                withCredentials([usernamePassword(credentialsId: 'dockerCred', Username: 'pass', Password: 'user')]) {
                     container('kaniko') {
                         script {
                             sh '''
@@ -28,8 +28,8 @@ pipeline {
                         }
                     }
                 }
+                }
             }
-        }
         stage('Test'){
             steps {
                 sh 'echo "testing will be here"'
