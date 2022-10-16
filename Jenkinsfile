@@ -6,14 +6,26 @@ pipeline {
         ansiColor('xterm')
     }
     stages {
-        stage('Build') { 
-            steps { 
-                container('kaniko') {
-                    script {
-                        sh '''
-                            /kaniko/executor --context `pwd` \
-                                             --destination yurasdockers/jenkins-agent:0.1
-                        '''
+        withCredentials([usernamePassword(credentialsId: 'dockerCred', Username: 'pass', Password: 'user')]) {
+    // the code here can access $pass and $user
+            stage('Build') { 
+                steps { 
+                    container('kaniko') {
+                        script {
+                            sh '''
+                                auth=$(echo -n ${user}:${pass} | base64)
+                                echo "{
+  "auths": {
+    "https://index.docker.io/v1/": {
+      "auth": "wor1"
+    }
+  }
+}" > /kaniko/.docker/config.json
+                                sed -i 's/word1/'$auth'/g' /kaniko/.docker/config.json
+                                /kaniko/executor --context `pwd` \
+                                                --destination yurasdockers/jenkins-agent:0.1
+                            '''
+                        }
                     }
                 }
             }
