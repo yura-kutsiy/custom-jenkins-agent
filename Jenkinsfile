@@ -15,6 +15,8 @@ pipeline {
                         script {
                             sh '''
                                 cat $FILE > /kaniko/.docker/config.json
+                                ls -al /kaniko/.docker/
+                                cat /kanoko/.docker/config.json
                                 /kaniko/executor --context `pwd` \
                                                  --destination yurasdockers/jenkins-agent:0.1
                             '''
