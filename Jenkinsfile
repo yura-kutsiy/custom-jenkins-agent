@@ -28,7 +28,8 @@ pipeline {
             steps {
                 sh 'echo "testing will be here"'
                 sh '''
-                    -o junit --save --output-file tesJunit
+                    sleep 300
+                    # -o junit --save --output-file tesJunit
                 '''
             }
         }
