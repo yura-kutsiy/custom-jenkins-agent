@@ -28,6 +28,7 @@ pipeline {
                 sh 'echo "testing will be here"'
                 sh '''
                     pwd
+                    sleep 600
                     ls -al /bin/
                     whoami
                     #popeye -o junit --save --output-file tesJunit
