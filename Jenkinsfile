@@ -28,7 +28,7 @@ pipeline {
                 sh 'echo "testing will be here"'
                 sh '''
                     pwd
-                    ls -al /bin/ | grep popeye
+                    ls -al /bin/
                     whoami
                     #popeye -o junit --save --output-file tesJunit
                 '''
