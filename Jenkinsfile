@@ -1,5 +1,5 @@
 pipeline { 
-    agent { label "kaniko" }  // popeye
+    agent { label "popeye" }  // kaniko
     options {
         ansiColor('xterm')
         timestamps ()
