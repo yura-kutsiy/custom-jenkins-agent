@@ -27,7 +27,10 @@ pipeline {
             steps {
                 sh 'echo "testing will be here"'
                 sh '''
-                    popeye -o junit --save --output-file tesJunit
+                    pwd
+                    ls -al /bin/ | grep popeye
+                    whoami
+                    #popeye -o junit --save --output-file tesJunit
                 '''
             }
         }
