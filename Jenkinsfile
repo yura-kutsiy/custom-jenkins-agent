@@ -28,7 +28,7 @@ pipeline {
             steps {
                 sh 'echo "testing will be here"'
                 sh '''
-                    -o junit --save --output-file tesJunit
+                    /bin/popeye -o junit --save --output-file tesJunit
                 '''
             }
         }
