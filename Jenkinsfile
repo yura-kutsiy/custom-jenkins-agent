@@ -1,9 +1,10 @@
 pipeline { 
-    agent {
-        label "popeye"
-    } 
+    agent { label "popeye" } 
     options {
         ansiColor('xterm')
+        timestamps ()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        // skipDefaultCheckout true
     }
     stages {
     // the code here can access $pass and $user
