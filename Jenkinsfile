@@ -18,7 +18,6 @@ pipeline {
                                 /kaniko/executor --context `pwd` \
                                                  --snapshotMode=full \
                                                  --cache=true \
-                                                 --cache-repo \
                                                  --destination yurasdockers/jenkins-agent:0.1
                             '''
                         }
