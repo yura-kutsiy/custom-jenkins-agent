@@ -29,11 +29,11 @@ pipeline {
             steps {
                 sh 'echo "testing will be here"'
                 // sh 'sleep 600'
-                sh ''
+                sh '''
                     whoami
                     id
                     groups
-                   ''
+                   '''
                 sh 'popeye'
             }
         }
