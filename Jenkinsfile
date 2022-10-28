@@ -28,12 +28,12 @@ pipeline {
         stage('Test'){
             steps {
                 sh 'echo "testing will be here"'
-                // sh 'sleep 600'
                 sh '''
                     whoami
                     id
                     groups
                    '''
+                sh 'sleep 600'
                 sh 'popeye'
             }
         }
