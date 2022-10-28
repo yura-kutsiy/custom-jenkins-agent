@@ -29,8 +29,7 @@ pipeline {
                 container('popeye') {
                         script {
                             sh '''
-                                whoami
-                                popeye -o junit
+                                popeye -o junit --save --output-file tesJunit
                             '''
                         }
                     }
