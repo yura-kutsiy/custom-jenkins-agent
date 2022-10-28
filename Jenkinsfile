@@ -1,9 +1,9 @@
 pipeline { 
-    agent {
-        label "kaniko"
-    } 
+    agent { label "kaniko" } 
     options {
         ansiColor('xterm')
+        timestamps ()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     stages {
     // the code here can access $pass and $user
