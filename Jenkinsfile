@@ -39,7 +39,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "deploy with GitOps"'
+                sh 'echo "deploy with GitOps" && sleep 300'
             }
         }
     }
