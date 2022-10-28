@@ -1,5 +1,5 @@
 pipeline { 
-    agent { label "default" } 
+    agent { label "kaniko" } 
     options {
         ansiColor('xterm')
         timestamps ()
@@ -7,24 +7,24 @@ pipeline {
     }
     stages {
                 // the code here can access $pass and $user
-    //         stage('Build') { 
-    //             steps { 
-    //             withCredentials([file(credentialsId: 'config.json', variable: 'FILE')]) {
-    // //              sh 'use $FILE'
-    //                 container('kaniko') {
-    //                     script {
-    //                         sh '''
-    //                             cat $FILE > /kaniko/.docker/config.json
-    //                             /kaniko/executor --context `pwd` \
-    //                                              --snapshotMode=full \
-    //                                              --cache=true \
-    //                                              --destination yurasdockers/jenkins-agent:0.1
-    //                         '''
-    //                     }
-    //                 }
-    //             }           
-    //             }
-    //         }
+            stage('Build') { 
+                steps { 
+                withCredentials([file(credentialsId: 'config.json', variable: 'FILE')]) {
+    //              sh 'use $FILE'
+                    container('kaniko') {
+                        script {
+                            sh '''
+                                cat $FILE > /kaniko/.docker/config.json
+                                /kaniko/executor --context `pwd` \
+                                                 --snapshotMode=full \
+                                                 --cache=true \
+                                                 --destination yurasdockers/jenkins-agent:0.3
+                            '''
+                        }
+                    }
+                }           
+                }
+            }
         stage('Test'){
             steps {
                 sh 'echo "testing will be here"'
