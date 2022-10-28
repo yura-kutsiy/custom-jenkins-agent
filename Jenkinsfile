@@ -6,7 +6,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
     stages {
-    the code here can access $pass and $user
+                // the code here can access $pass and $user
             stage('Build') { 
                 steps { 
                 withCredentials([file(credentialsId: 'config.json', variable: 'FILE')]) {
@@ -26,7 +26,7 @@ pipeline {
         stage('Test'){
             steps {
                 sh 'echo "testing will be here"'
-                sh 'sleep 600'
+                // sh 'sleep 600'
                 sh 'popeye'
             }
         }
