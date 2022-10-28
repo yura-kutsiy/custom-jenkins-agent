@@ -30,7 +30,7 @@ pipeline {
                 container('popeye') {
                         script {
                             sh '''
-                                popeye -o junit --save --output-file tesJunit
+                                popeye -o junit --save --output-file testJunit.xml
                             '''
                         }
                     }
@@ -39,7 +39,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo "deploy with GitOps" && sleep 300'
+                sh 'echo "deploy with GitOps"'
+                junit '/tmp/popeye/testJunit.xml'
             }
         }
     }
