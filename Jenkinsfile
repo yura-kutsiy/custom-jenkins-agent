@@ -1,5 +1,5 @@
 pipeline { 
-    agent { label "popeye" }  // kaniko
+    agent { label "default" }  // kaniko
     options {
         ansiColor('xterm')
         timestamps ()
@@ -27,14 +27,9 @@ pipeline {
             steps {
             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 sh 'echo "testing will be here"'
-                container('popeye') {
-                        script {
-                            sh '''
-                                popeye -o junit --save --output-file testJunit.xml
-                                junit '/tmp/popeye/testJunit.xml'
-                            '''
-                        }
-                    }
+                sh '''
+                    popeye -o junit --save --output-file test.xml
+                '''
                 }
             }
         }
