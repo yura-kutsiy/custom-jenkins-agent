@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh 'echo "deploy with GitOps"'
                 sh 'sleep 120'
-                junit '/tmp/test.xml'
+                junit '/tmp/popeye/test.xml'
             }
         }
     } 
