@@ -25,6 +25,7 @@ pipeline {
     //         }
         stage('Test'){
             steps {
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                 sh 'echo "testing will be here"'
                 container('popeye') {
                         script {
@@ -33,6 +34,7 @@ pipeline {
                             '''
                         }
                     }
+                }
             }
         }
         stage('Deploy') {
