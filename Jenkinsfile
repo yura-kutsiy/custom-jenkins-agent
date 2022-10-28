@@ -7,34 +7,27 @@ pipeline {
     }
     stages {
                 // the code here can access $pass and $user
-    //         stage('Build') { 
-    //             steps { 
-    //             withCredentials([file(credentialsId: 'config.json', variable: 'FILE')]) {
-    // //              sh 'use $FILE'
-    //                 container('kaniko') {
-    //                     script {
-    //                         sh '''
-    //                             cat $FILE > /kaniko/.docker/config.json
-    //                             /kaniko/executor --context `pwd` \
-    //                                              --snapshotMode=full \
-    //                                              --cache=true \
-    //                                              --destination yurasdockers/jenkins-agent:0.3
-    //                         '''
-    //                     }
-    //                 }
-    //             }           
-    //             }
-    //         }
+            stage('Build') { 
+                steps { 
+                withCredentials([file(credentialsId: 'config.json', variable: 'FILE')]) {
+                    // sh 'use $FILE'
+                    container('kaniko') {
+                        script {
+                            sh '''
+                                cat $FILE > /kaniko/.docker/config.json
+                                /kaniko/executor --context `pwd` \
+                                                 --snapshotMode=full \
+                                                 --cache=true \
+                                                 --destination yurasdockers/jenkins-agent:0.3
+                            '''
+                        }
+                    }
+                }           
+                }
+            }
         stage('Test'){
             steps {
                 sh 'echo "testing will be here"'
-                sh '''
-                    whoami
-                    id
-                    groups
-                   '''
-                sh 'sleep 600'
-                sh 'popeye'
             }
         }
         stage('Deploy') {
