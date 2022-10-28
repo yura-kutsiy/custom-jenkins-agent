@@ -30,7 +30,7 @@ pipeline {
                         script {
                             sh '''
                                 whoami
-                                popeye -o junit --save --output-file tesJunit
+                                popeye -o junit
                             '''
                         }
                     }
