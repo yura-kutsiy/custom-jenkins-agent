@@ -29,7 +29,6 @@ pipeline {
                 sh 'echo "testing will be here"'
                 sh '''
                     popeye -o junit --save --output-file test.xml
-                    junit '/tmp/test.xml'
                 '''
                 }
             }
@@ -37,6 +36,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo "deploy with GitOps"'
+                junit '/tmp/test.xml'
             }
         }
     }
