@@ -29,6 +29,7 @@ pipeline {
                 sh 'echo "testing will be here"'
                 sh '''
                     popeye -o junit --save --output-file test.xml
+                    sleep 300
                 '''
                 }
             }
