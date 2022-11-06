@@ -16,10 +16,11 @@ pipeline {
                             sh '''
                                 cat $FILE > /kaniko/.docker/config.json
                                 /kaniko/executor --context `pwd` \
+                                                 --label app=agent include=curl include=popeye include=trivy \
                                                  --snapshotMode=full \
                                                  --cache=true \
                                                  --cache-repo yurasdockers/jenkins-agent-cache \
-                                                 --destination yurasdockers/jenkins-agent:0.3
+                                                 --destination yurasdockers/jenkins-agent:0.4
                             '''
                         }
                     }
